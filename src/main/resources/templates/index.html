@@ -1,0 +1,26 @@
+<html lang="en">
+    <head>
+        <title>Shortening URLs since 2025</title>
+        <script>
+            async function copyUrlToClipboard() {
+                try {
+                    await navigator.clipboard.writeText(document.getElementById('txtShortenedUrl').innerText);
+                    console.log('Text successfully copied to clipboard');
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Shortening URL</h1>
+        <form action="/" method="post">
+            <label for="txtUrl">Enter URL</label><input id="txtUrl" name="url" type="text" placeholder="Enter URL to shorten" />
+            <button id="btnCreate" type="submit">Shorten</button>
+        </form>
+        <div th:if="${shortenedUrl != null}">
+            <a th:href="${shortenedUrl}" th:text="${shortenedUrl}" id="txtShortenedUrl">NA</a>
+            <button id="btnCopy" onclick="copyUrlToClipboard()">Copy to Clipboard</button>
+        </div>
+    </body>
+</html>
